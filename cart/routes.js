@@ -11,11 +11,11 @@ router.post(
     controller.createNewUser
   );
 
-router.post('/get-all-user', controller.getAllUsers );
-router.get('/get-user/:id', controller.getUserById );
-router.post('/reset-password/:user_id', controller.updatePassword );
-router.put('/update-user/:id', controller.updateUser );
-router.post('/login', controller.userLogin );
+router.get('/getcart', controller.getCart );
+router.post('/createcart', controller.createCart );
+// router.post('/reset-password/:user_id', controller.updatePassword );
+// router.put('/update-user/:id', controller.updateUser );
+// router.post('/login', controller.userLogin );
 
 
 module.exports = router;

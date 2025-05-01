@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../db');
 // const sequelize = require('../db');
 
-module.exports = sequelize.define(
+const User = sequelize.define(
   'User',
   {
     id: {
@@ -42,3 +42,5 @@ module.exports = sequelize.define(
     timestamps: true
   }
 );
+
+module.exports = User;

@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
 const UserModel = require('./model')
-const client = require('../redis')
+const client = require('../redis.config')
 
 
 const getAllUsers = async (req, res) => {
