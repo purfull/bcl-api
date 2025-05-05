@@ -9,7 +9,7 @@ const OrderItem = sequelize.define('OrderItem', {
         autoIncrement: true
     },
     order_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER, 
         allowNull: false
     },
     product_id: {
