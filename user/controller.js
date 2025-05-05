@@ -33,23 +33,23 @@ const createNewUser = async (req, res) => {
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-        const newUser = await UserModel.create({ name, email, address, country, zip_code, location, password: hashedPassword, role })
+        const newUser = await UserModel.create({ name, email, address, country, zip_code, location, password: hashedPassword });
         res.json({success: true, message:  "user created successfully", data: newUser})
 
     } catch (error) {
-        console.log("error", error)
+        console.log("error", error)+
         res.status(500).json({success: false, message: "failed to create user" });
     }
 }
 
 const updateUser = async (req, res) => {
-    const { name, email, password, address, country, zip_code, location, status } = req.body;
-    const { id } = req.params;
+    const { id,name, email, password, address, country, zip_code, location, status } = req.body;
+    // const { id } = req.params;
 
     try {
 
         const newUser = await UserModel.update(
-            { name, role, email, password, address, country, zip_code, location, status },
+            { name, email, password, address, country, zip_code, location, status },
             { where: { id : id } })
         res.json({success: true, message:  "user updated successfully", data: newUser})
 
