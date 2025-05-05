@@ -31,6 +31,8 @@ app.use(cors(corsOptions));
 const userRoutes = require('./user/routes')
 const otpRoutes = require('./otp/routes')
 const cartRoutes = require('./cart/routes')
+const productroutes = require('./products/routes')
+const cartRoutes = require('./cart/routes')
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -43,6 +45,8 @@ app.get('/check', (req, res) => {
 
 app.use('/user', userRoutes);
 app.use('/otp', otpRoutes);
+app.use('/cart', cartRoutes);
+app.use('/product' ,productroutes )
 app.use('/cart', cartRoutes);
 
 
