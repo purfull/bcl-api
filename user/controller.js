@@ -29,15 +29,18 @@ const createNewUser = async (req, res) => {
 
     const { name, email, password, address, country, zip_code, location } = req.body.body;
     console.log(req.body.body);
-    
-    
+
+
     try {
 
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(password, saltRounds);
         console.log(hashedPassword);
-        
-
+        const user = await UserModel.findOne({ where: { email: email, status: 'active' } })
+        console.log("user==>", user)
+        if (user) {
+            return res.status(400).json({ success: false, message: "user already exists" });
+        }
         const newUser = await UserModel.create({ name, email, address, country, zip_code, location, password: hashedPassword })
         res.json({ success: true, message: "user created successfully", data: newUser })
 
@@ -50,7 +53,7 @@ const createNewUser = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
-    const {id,name, email, password, address, country, zip_code, location, status } = req.body;
+    const { id, name, email, password, address, country, zip_code, location, status } = req.body;
     // const { id } = req.params;
 
     try {
@@ -158,6 +161,6 @@ module.exports = {
     updateUser,
     // updatePassword,
     userLogin
-    
+
 };
 

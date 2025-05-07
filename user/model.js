@@ -15,9 +15,14 @@ const User = sequelize.define(
     },
     email: {
       type: DataTypes.STRING,
-      unique: true,
-      allowNull: false
+      allowNull: false,
+      unique: 'email_status_unique'  // Composite uniqueness constraint
     },
+    // mobile_number: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    //   unique: 'email_status_unique'  // Composite uniqueness constraint
+    // },
     password: {
       type: DataTypes.STRING
     },
