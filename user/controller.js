@@ -117,7 +117,7 @@ const updateUser = async (req, res) => {
 
 
 const userLogin = async (req, res) => {
-    const { email, password } = req.body;
+    const { email, password } = req.body.body;
 
     try {
         const user = await UserModel.findOne({ where: { email } });
@@ -142,7 +142,7 @@ const userLogin = async (req, res) => {
             success: true,
             message: "login successful",
             token,
-            user: { id: user.id, business_id: user.business_id, email: user.email, role: user.role }
+            user: { user, role: user.role }
         });
 
     } catch (error) {
