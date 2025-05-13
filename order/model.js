@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../db');
 
-module.exports = sequelize.define(
+const Order = sequelize.define(
     'orders',
 
     {
@@ -114,3 +114,5 @@ module.exports = sequelize.define(
     }
 
 )
+
+module.exports = Order;

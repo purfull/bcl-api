@@ -17,7 +17,7 @@ const upload = require('../multer/multer');
 //     controller.createNewUser
 //   );
 
-router.get('/getcart', controller.getCartById );
+router.post('/getcart', controller.getCartById );
 router.post('/createcart', controller.addToCart );
 // router.post('/reset-password/:user_id', controller.updatePassword );
 // router.put('/update-user/:id', controller.updateUser );

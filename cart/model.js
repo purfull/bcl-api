@@ -8,10 +8,10 @@ const Cart = sequelize.define('Cart', {
     autoIncrement: true,
     primaryKey: true
   },
-//   userId: {
-//     type: DataTypes.INTEGER,
-//     allowNull: false
-//   },
+  // userId: {
+  //   type: DataTypes.INTEGER,
+  //   allowNull: false
+  // },
   status: {
     type: DataTypes.ENUM('active', 'inactive'),
     defaultValue: 'active'
