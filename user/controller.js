@@ -119,17 +119,27 @@ const updateUser = async (req, res) => {
 const userLogin = async (req, res) => {
     const { email, password } = req.body.body;
 
+    
+
     try {
         const user = await UserModel.findOne({ where: { email } });
+
+        console.log("user", user.dataValues);
+
+
 
         if (!user) {
             return res.status(404).json({ success: false, message: "user not found" });
         }
 
+
+
+
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             return res.status(401).json({ success: false, message: "invalid credentials" });
         }
+
 
         const token = jwt.sign(
             { id: user.id, name: user.name, business_id: user.business_id, email: user.email, role: user.role },
@@ -137,13 +147,15 @@ const userLogin = async (req, res) => {
             { expiresIn: "1h" }
         );
 
-
         res.json({
             success: true,
             message: "login successful",
             token,
-            user: { user, role: user.role }
+            user: { user:user.dataValues, role: user.role }
+            
         });
+
+
 
     } catch (error) {
         console.error("login error:", error);

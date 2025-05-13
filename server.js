@@ -20,7 +20,7 @@ app.use('/uploads', express.static(uploadsPath));
 
 
 const corsOptions = {
-  origin: 'http://localhost:3000', // Specific origin instead of '*'
+  origin: '*', // Specific origin instead of '*'
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
