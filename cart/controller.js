@@ -1,11 +1,13 @@
 const jwt = require("jsonwebtoken");
 const Cart = require('./model')
 const client = require('../redis.config')
+const CartItem = require('../cartItem/model')
 
 
 const getCartById = async (req, res) => {
-    const { userId } = req.params;
+    const { userId } = req.body.body;
     try {
+        console.log("userId==>",userId)
         const carts = await Cart.findAll({
             where: {
                 UserId: userId,
@@ -25,18 +27,18 @@ const getCartById = async (req, res) => {
 }
 
 const addToCart = async (req, res) => {
-    const { userId, productId, quantity } = req.body;
+    const { userId, productId, quantity } = req.body.body;
 
     try {
-
+        console.log("req.body", req.body)
         const newCart = await Cart.create({
             UserId: userId
         });
 
         await CartItem.bulkCreate([
             {
-                cartId: cart.id,
-                productId: productId,
+                CartId: newCart.id,
+                ProductId: productId,
                 quantity: quantity
             }
         ]);

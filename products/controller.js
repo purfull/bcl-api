@@ -31,7 +31,7 @@ const getAllProduct = async (req, res) => {
 
 
 const getProductById = async (req, res) => {
-    const { id } = req.params;
+    const { id } = req.body.body;
     try {
         const product = await ProductModel.findOne({ where: { id: id } });
         res.status(200).json({success: true, data: product });
