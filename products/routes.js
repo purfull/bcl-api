@@ -12,7 +12,7 @@ router.post(
   );
 
 router.post('/get-all-product', controller.getAllProduct );
-router.post('/get-product', controller.getProductById );
+router.post('/get-product/:id', controller.getProductById );
 // router.post('/reset-password/:product_id', controller.updatePassword ); 
 router.put('/update-product/:id', controller.updateProduct );  // admin 
 router.delete('')  // admin
