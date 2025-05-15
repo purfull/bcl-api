@@ -5,7 +5,7 @@ const CartItem = require('../cartItem/model')
 
 
 const getCartById = async (req, res) => {
-    const { userId } = req.body.body;
+    const { userId } = req.body.body;0
     try {
         console.log("userId==>",userId)
         const carts = await Cart.findAll({
