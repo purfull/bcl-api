@@ -32,6 +32,8 @@ const userRoutes = require('./user/routes')
 const otpRoutes = require('./otp/routes')
 const cartRoutes = require('./cart/routes')
 const productroutes = require('./products/routes')
+const orderroutes = require('./order/routes')
+const paymentRoute = require('./payment/routes')
 // const cartRoutes = require('./cart/routes')
 
 app.use(express.urlencoded({ extended: false }));
@@ -47,6 +49,8 @@ app.use('/user', userRoutes);
 app.use('/otp', otpRoutes);
 app.use('/cart', cartRoutes);
 app.use('/product' ,productroutes )
+app.use('/order' ,orderroutes )
+app.use('/payment', paymentRoute)
 // app.use('/cart', cartRoutes);
 
 

@@ -28,6 +28,9 @@ const Order = sequelize.define(
         order: {
             type: DataTypes.STRING
         },
+        orderItems: {
+            type: DataTypes.JSON
+        },
         country: {
             type: DataTypes.STRING
         },

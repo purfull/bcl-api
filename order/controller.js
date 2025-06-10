@@ -1,4 +1,6 @@
-const { Order, OrderItem, User, Product } = require('../models');
+// const { Order, OrderItem, User, Product } = require('../models');
+const { where } = require('sequelize');
+const Order = require('./model')
 
 module.exports = {
 
@@ -6,12 +8,12 @@ module.exports = {
   getAllOrders: async (req, res) => {
     try {
       const orders = await Order.findAll({
-        include: [
-          { model: OrderItem, as: 'items', include: ['product'] },
-          { model: User, as: 'customer' }
-        ]
+        // include: [
+        //   { model: OrderItem, as: 'items', include: ['product'] },
+        //   { model: User, as: 'customer' }
+        // ]
       });
-      res.json(orders);
+      res.status(200).json(orders);
     } catch (err) {
       res.status(500).json({ error: 'Failed to fetch orders' });
     }
@@ -19,12 +21,14 @@ module.exports = {
 
   // GET /api/orders/:id
   getOrderById: async (req, res) => {
+    const {id} = req.params
     try {
-      const order = await Order.findByPk(req.params.id, {
-        include: [
-          { model: OrderItem, as: 'items', include: ['product'] },
-          { model: User, as: 'customer' }
-        ]
+      const order = await Order.findOne(req.params.id, {
+        // include: [
+        //   { model: OrderItem, as: 'items', include: ['product'] },
+        //   { model: User, as: 'customer' }
+        // ]
+        where: { id: id } 
       });
       if (!order) return res.status(404).json({ error: 'Order not found' });
       res.json(order);
