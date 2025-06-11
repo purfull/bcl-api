@@ -29,7 +29,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 const userRoutes = require('./user/routes')
-const otpRoutes = require('./otp/routes')
+// const otpRoutes = require('./otp/routes')
 const cartRoutes = require('./cart/routes')
 const productroutes = require('./products/routes')
 const orderroutes = require('./order/routes')
@@ -46,7 +46,7 @@ app.get('/check', (req, res) => {
 })
 
 app.use('/user', userRoutes);
-app.use('/otp', otpRoutes);
+// app.use('/otp', otpRoutes);
 app.use('/cart', cartRoutes);
 app.use('/product' ,productroutes )
 app.use('/order' ,orderroutes )
