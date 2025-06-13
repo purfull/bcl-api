@@ -10,13 +10,19 @@ const Products = sequelize.define(
       autoIncrement: true,
       primaryKey: true
     },
-    name: {
+    name_english: {
       type: DataTypes.STRING
     },
-    category: {
+    name_tamil: {
+      type: DataTypes.STRING
+    },
+    description_english: {
       type: DataTypes.STRING,
     },
-    description: {
+    description_tamil: {
+      type: DataTypes.STRING,
+    },
+    category: {
       type: DataTypes.STRING,
     },
     price: {

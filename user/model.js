@@ -16,28 +16,23 @@ const User = sequelize.define(
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: 'email_status_unique'  // Composite uniqueness constraint
+      unique: true 
     },
-    // mobile_number: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    //   unique: 'email_status_unique'  // Composite uniqueness constraint
-    // },
     password: {
       type: DataTypes.STRING
     },
     address: {
       type: DataTypes.STRING
     },
-    country: {
-      type: DataTypes.STRING
-    },
-    zip_code: {
-      type: DataTypes.STRING
-    },
-    location: {
-      type: DataTypes.STRING
-    },
+    // country: {
+    //   type: DataTypes.STRING
+    // },
+    // zip_code: {
+    //   type: DataTypes.STRING
+    // },
+    // location: {
+    //   type: DataTypes.STRING
+    // },
     status: {
       type: DataTypes.ENUM('active', 'inactive'),
       defaultValue: 'active',

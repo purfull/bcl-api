@@ -10,103 +10,21 @@ const Order = sequelize.define(
             autoIncrement: true,
             primaryKey: true
         },
-        address: {
-            type: DataTypes.STRING
+        customer_detials: {
+            type: DataTypes.JSON,
         },
-        address_type: {
-            type: DataTypes.STRING
+        order_detials: {
+            type: DataTypes.JSON,
         },
-        phone: {
+        asign_to: { 
             type: DataTypes.STRING,
-        },
-        name: {
-            type: DataTypes.STRING
-        },
-        pin: {
-            type: DataTypes.INTEGER
-        },
-        order: {
-            type: DataTypes.STRING
-        },
-        orderItems: {
-            type: DataTypes.JSON
-        },
-        country: {
-            type: DataTypes.STRING
-        },
-        shipping_mode: {
-            type: DataTypes.STRING,
-        },
-        invoiceNumber: {
-            type: DataTypes.STRING
-        },
-        invoiceDate: {
-            type: DataTypes.STRING
-        },
-        transactionType: {
-            type: DataTypes.STRING
-        },
-        orderId: {
-            type: DataTypes.STRING
-        },
-        quantity: {
-            type: DataTypes.INTEGER
-        },
-        sku: {
-            type: DataTypes.STRING
-        },
-        city: {
-            type: DataTypes.STRING
-        },
-        state: {
-            type: DataTypes.STRING
-        },
-        invoiceAmount: {
-            type: DataTypes.STRING
-        },
-        taxExclusiveGross: {
-            type: DataTypes.STRING
-        },
-        totalTaxAmount: {
-            type: DataTypes.STRING
-        },
-        cgstTax: {
-            type: DataTypes.STRING
-        },
-        sgstTax: {
-            type: DataTypes.STRING
-        },
-        utgstTax: {
-            type: DataTypes.STRING
-        },
-        igstTax: {
-            type: DataTypes.STRING
-        },
-        customerBillToGST: {
-            type: DataTypes.STRING,
-            allowNull: true,
-
-        },
-        buyerName: {
-            type: DataTypes.STRING
-        },
-        total_product_cost: {
-            type: DataTypes.STRING
-        },
-        total_shipment_cost: {
-            type: DataTypes.STRING
-        },
-        waybill: {
-            type: DataTypes.STRING,
-        },
-        payment: {
-            type: DataTypes.STRING
         },
         remarks: {
             type: DataTypes.STRING
         },
         status: {
-            type: DataTypes.STRING
+            type: DataTypes.ENUM('order-failed', 'order-recived', 'shipped', 'out-for-delivery', 'delivered'),
+            defaultValue: 'order-recived'
         }
 
 

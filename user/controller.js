@@ -27,7 +27,7 @@ const getUserById = async (req, res) => {
 }
 
 const createNewUser = async (req, res) => {
-    const { name, email, password, address, country, zip_code } = req.body.body;
+    const { name, email, password, address, country, zip_code } = req.body;
 
     try {
         const saltRounds = 10;
@@ -57,10 +57,12 @@ const createNewUser = async (req, res) => {
         const newUser = await UserModel.create({
             name,
             email,
-            address,
-            country,
-            zip_code,
-            location,
+            address: {
+                address,
+                country,
+                zip_code,
+                location
+            },
             password: hashedPassword
         });
 
@@ -73,13 +75,18 @@ const createNewUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-    const { id, name, email, password, address, country, zip_code, location, status } = req.body;
+    const { id, name, email, password, address, status } = req.body;
     // const { id } = req.params;
 
     try {
 
         const newUser = await UserModel.update(
-            { name, email, password, address, country, zip_code, location, status },
+            { 
+            name,
+            email,
+            password, 
+            address,
+             status },
             { where: { id: id } })
         res.json({ success: true, message: "user updated successfully", data: newUser })
 
