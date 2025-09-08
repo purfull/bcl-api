@@ -6,16 +6,26 @@ const controller = require('./controller')
 const upload = require('../multer/multer');
 
 router.post(
-    '/create-product',
-    upload.single('image'), 
-    controller.createNewProduct
-  );
+  '/create-product',
+  upload.fields([
+    { name: 'thumbnailImage', maxCount: 1 },
+    { name: 'galleryImage', maxCount: 10 }
+  ]),
+  controller.createNewProduct
+);
+
 
 router.get('/get-all-product', controller.getAllProduct );
-router.post('/get-product/:id', controller.getProductById );
+router.get('/get-product/:id', controller.getProductById );
 // router.post('/reset-password/:product_id', controller.updatePassword ); 
-router.put('/update-product/:id', controller.updateProduct );  // admin 
-router.delete('')  // admin
+router.put(
+  '/update-product/:id',
+  upload.fields([
+    { name: 'thumbnailImage', maxCount: 1 },
+    { name: 'galleryImage', maxCount: 10 }
+  ]),
+  controller.updateProduct
+);
 
 
 module.exports = router;

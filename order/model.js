@@ -10,13 +10,26 @@ const Order = sequelize.define(
             autoIncrement: true,
             primaryKey: true
         },
+        customer_id: {
+            type: DataTypes.STRING,
+        },
+        payment_id: {
+            type: DataTypes.STRING,
+
+        },
         customer_detials: {
             type: DataTypes.JSON,
         },
         order_detials: {
             type: DataTypes.JSON,
         },
+        totalValue: { 
+            type: DataTypes.STRING,
+        },
         asign_to: { 
+            type: DataTypes.STRING,
+        },
+        type: { 
             type: DataTypes.STRING,
         },
         remarks: {

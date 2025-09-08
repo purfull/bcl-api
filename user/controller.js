@@ -27,7 +27,7 @@ const getUserById = async (req, res) => {
 }
 
 const createNewUser = async (req, res) => {
-    const { name, email, password, address, country, zip_code } = req.body;
+    const { name, email, phone, password, address, country, zip_code } = req.body.body;
 
     try {
         const saltRounds = 10;
@@ -57,6 +57,7 @@ const createNewUser = async (req, res) => {
         const newUser = await UserModel.create({
             name,
             email,
+            phone,
             address: {
                 address,
                 country,
@@ -75,17 +76,38 @@ const createNewUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-    const { id, name, email, password, address, status } = req.body;
+    const { id, name, email, phone, password, address, country, zip_code, status } = req.body.body;
     // const { id } = req.params;
 
     try {
 
+        const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY
+        const encodedAddress = encodeURIComponent(`${address?.address}, ${address?.country}, ${address?.ip_code}`);
+        const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&key=${GOOGLE_API_KEY}`;
+        const geoResponse = await axios.get(geocodeUrl);
+
+        if (
+            geoResponse.data.status !== 'OK' ||
+            !geoResponse.data.results ||
+            geoResponse.data.results.length === 0
+        ) {
+            return res.status(400).json({ success: false, message: "Invalid address" });
+        }
+
+        const { lat, lng } = geoResponse.data.results[0].geometry.location;
+        const location = { lat, lng };
         const newUser = await UserModel.update(
             { 
             name,
             email,
+            phone,
             password, 
-            address,
+            address: {
+                address: address.address,
+                country,
+                zip_code,
+                location
+            },
              status },
             { where: { id: id } })
         res.json({ success: true, message: "user updated successfully", data: newUser })

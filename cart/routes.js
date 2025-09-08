@@ -1,27 +1,20 @@
 const express = require('express');
-
 const router = express.Router();
+const cartController = require('./controller');
 
-const controller = require('../cart/controller')
+// POST: Add to cart
+router.post('/add-to-cart', cartController.createCartItem);
 
-const upload = require('../multer/multer');
+// GET: Get all items in user's cart
+router.get('/get-cart', cartController.getAllCartItems);
 
-// router.post(
-//     '/create-user',
-//     upload.single('image'), 
-//     controller.createNewUser
-//   );
-// router.post(
-//     '/create-user',
-//     upload.single('image'), 
-//     controller.createNewUser
-//   );
+// PUT: Update cart item quantity
+router.put('/update-cart/:id', cartController.updateCartItem);
 
-router.post('/getcart', controller.getCartById );
-router.post('/createcart', controller.addToCart );
-// router.post('/reset-password/:user_id', controller.updatePassword );
-// router.put('/update-user/:id', controller.updateUser );
-// router.post('/login', controller.userLogin );
+// DELETE: Remove one item from cart
+router.delete('/delete-item/:id', cartController.deleteCartItem);
 
+// DELETE: Clear cart for a user
+router.delete('/clear/:userId', cartController.clearCartForUser);
 
 module.exports = router;

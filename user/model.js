@@ -13,6 +13,9 @@ const User = sequelize.define(
     name: {
       type: DataTypes.STRING
     },
+    phone: {
+      type: DataTypes.STRING
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -22,7 +25,7 @@ const User = sequelize.define(
       type: DataTypes.STRING
     },
     address: {
-      type: DataTypes.STRING
+      type: DataTypes.JSON
     },
     // country: {
     //   type: DataTypes.STRING

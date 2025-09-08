@@ -4,13 +4,16 @@ const Order = require('./model');
 
 const getAllOrders = async (req, res) => {
     try {
-        const { asign_to, status } = req.query;
+        const { asign_to, customerId, status } = req.query;
         const whereClause = {};
 
         if (asign_to) {
             whereClause.asign_to = { [Op.like]: `%${asign_to}%` };
         }
 
+        if (customerId) {
+            whereClause.customer_id = customerId;
+        }
         if (status) {
             whereClause.status = status;
         }
@@ -40,10 +43,10 @@ const getOrderById = async (req, res) => {
 
 
 const createOrder = async (req, res) => {
-    const { customer_detials, order_detials, asign_to, remarks, status } = req.body;
+    const { customer_id, payment_id, customer_detials, order_detials, asign_to, totalValue, type, remarks } = req.body;
 
     try {
-        const newOrder = await Order.create({ customer_detials, order_detials, asign_to, remarks, status });
+        const newOrder = await Order.create({ customer_id, payment_id, customer_detials, order_detials, asign_to, totalValue, type, remarks });
         res.status(201).json({ success: true, message: "Order created successfully", data: newOrder });
     } catch (error) {
         console.error("Error creating order:", error);
